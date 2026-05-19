@@ -195,7 +195,7 @@ export const DATA = {
       description:
         "Built SatChat: a vision LLM triage pipeline for satellite imagery. Fine-tuned LFM2.5-VL-450M with LoRA on Sentinel-2 agricultural stress data. 50,000:1 compression ratio over raw imagery downlink.",
       image: "",
-      links: [],
+      links: [] as { href: string; icon: React.ReactNode; title: string }[],
     },
     {
       title: "GT STAR-AI Makerspace Hackathon",
@@ -204,7 +204,7 @@ export const DATA = {
       description:
         "Drug-target affinity prediction with GIN ensembles and uncertainty quantification. KIBA CI=0.882. Full paper, poster, and reproducibility package.",
       image: "",
-      links: [],
+      links: [] as { href: string; icon: React.ReactNode; title: string }[],
     },
   ],
 };
