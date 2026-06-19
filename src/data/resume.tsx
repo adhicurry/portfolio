@@ -8,7 +8,7 @@ import { ReactLight } from "@/components/ui/svgs/reactLight";
 export const DATA = {
   name: "Daksh Adhikari",
   initials: "DA",
-  url: "https://adhicurry.github.io",
+  url: "https://portfolio.dakshhomelab.com",
   location: "Atlanta, GA",
   locationLink: "https://www.google.com/maps/place/Atlanta,+GA",
   description:
