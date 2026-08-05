@@ -4,6 +4,8 @@ import { DATA } from "@/data/resume";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 function groupByTopic<T extends { topic: string }>(items: readonly T[]) {
   return items.reduce<Record<string, T[]>>((groups, item) => {
@@ -28,7 +30,15 @@ export default function PublicationsSection() {
               {publications.map((publication, index) => (
                 <div key={publication.citation} className="flex gap-4 border-l-2 border-primary/40 pl-4">
                   <span className="font-mono text-xs text-primary pt-1">{String(index + 1).padStart(2, "0")}</span>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{publication.citation} {publication.note && <span className="text-foreground font-medium">({publication.note})</span>}</p>
+                  <div className="text-sm leading-relaxed text-muted-foreground">
+                    {publication.slug ? (
+                      <Link href={`/research/publications/${publication.slug}`} className="group inline-flex items-start gap-1 hover:text-foreground transition-colors">
+                        <span>{publication.citation}</span>
+                        <ArrowUpRight className="mt-1 size-3.5 shrink-0 text-primary opacity-70 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </Link>
+                    ) : publication.citation}
+                    {publication.note && <span className="ml-1 text-foreground font-medium">({publication.note})</span>}
+                  </div>
                 </div>
               ))}
             </div>
