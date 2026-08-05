@@ -12,9 +12,9 @@ export default function ContactPage() {
   return (
     <main className="flex min-h-dvh flex-col gap-10">
       <header className="border-l-2 border-primary pl-5">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">Open to conversations</p>
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">Get in touch</p>
         <h1 className="mt-3 text-4xl font-bold tracking-tighter sm:text-5xl">Contact</h1>
-        <p className="mt-3 max-w-2xl text-muted-foreground">Research collaborations, interesting builds, and thoughtful questions are always welcome.</p>
+        <p className="mt-3 max-w-2xl text-muted-foreground">I'm happy to hear from people working on related research or interesting technical projects.</p>
       </header>
       <BlurFade><ContactSection /></BlurFade>
     </main>

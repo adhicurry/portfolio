@@ -10,8 +10,8 @@ export default function PublicationsSection() {
     <div className="flex min-h-0 flex-col gap-y-8">
       <div className="flex flex-col gap-y-3">
         <div className="flex items-center gap-3 text-primary text-sm font-medium uppercase tracking-[0.2em]"><span className="h-px w-8 bg-primary" /> Selected publications</div>
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Research, in print</h2>
-        <p className="text-muted-foreground md:text-lg">Peer-reviewed work spanning thermal systems, biomedical ML, and high-temperature experimentation.</p>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Publications</h2>
+        <p className="text-muted-foreground md:text-lg">Peer-reviewed work on thermal systems, biomedical ML, and high-temperature experimentation.</p>
       </div>
       <div className="grid gap-5">
         {DATA.publications.map((publication, index) => (
