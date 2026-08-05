@@ -1,5 +1,5 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import HackathonsSection from "@/components/section/hackathons-section";
+
 import ProjectsSection from "@/components/section/projects-section";
 import { DATA } from "@/data/resume";
 import type { Metadata } from "next";
@@ -18,7 +18,7 @@ export default function ProjectsPage() {
         <p className="mt-3 max-w-2xl text-muted-foreground">Personal projects and quick experiments from hackathons.</p>
       </header>
       <BlurFade><ProjectsSection id="personal-projects-list" eyebrow="Side projects" title="Personal projects" description="Apps and experiments I built because I wanted to see if the idea would work." projects={DATA.personalProjects} /></BlurFade>
-      <BlurFade><HackathonsSection /></BlurFade>
+
     </main>
   );
 }

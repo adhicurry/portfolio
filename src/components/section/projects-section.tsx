@@ -9,7 +9,16 @@ type ProjectsSectionProps = {
     eyebrow: string;
     title: string;
     description: string;
-    projects: typeof DATA.academicProjects;
+    projects: ReadonlyArray<{
+        title: string;
+        slug: string;
+        description: string;
+        dates: string;
+        technologies: readonly string[];
+        image: string;
+        video: string;
+        links: readonly { icon: React.ReactNode; type: string; href: string }[];
+    }>;
 };
 
 export default function ProjectsSection({ id, eyebrow, title, description, projects }: ProjectsSectionProps) {

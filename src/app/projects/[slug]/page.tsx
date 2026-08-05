@@ -68,7 +68,7 @@ export default async function ProjectPage({
   return (
     <section id="project-detail">
       <Link
-        href="/#personal-projects"
+        href="/projects"
         className="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-2 py-1 inline-flex items-center gap-1 mb-8 group"
       >
         <ChevronLeft className="size-3 group-hover:-translate-x-px transition-transform" />

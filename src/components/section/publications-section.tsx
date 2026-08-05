@@ -5,6 +5,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+function groupByTopic<T extends { topic: string }>(items: readonly T[]) {
+  return items.reduce<Record<string, T[]>>((groups, item) => {
+    (groups[item.topic] ??= []).push(item);
+    return groups;
+  }, {});
+}
+
 export default function PublicationsSection() {
   return (
     <div className="flex min-h-0 flex-col gap-y-8">
@@ -13,12 +20,19 @@ export default function PublicationsSection() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Publications</h2>
         <p className="text-muted-foreground md:text-lg">Peer-reviewed work on thermal systems, biomedical ML, and high-temperature experimentation.</p>
       </div>
-      <div className="grid gap-5">
-        {DATA.publications.map((publication, index) => (
-          <div key={publication.citation} className="flex gap-4 border-l-2 border-primary/40 pl-4">
-            <span className="font-mono text-xs text-primary pt-1">0{index + 1}</span>
-            <p className="text-sm leading-relaxed text-muted-foreground">{publication.citation} {publication.note && <span className="text-foreground font-medium">({publication.note})</span>}</p>
-          </div>
+      <div className="grid gap-8">
+        {Object.entries(groupByTopic(DATA.publications)).map(([topic, publications]) => (
+          <section key={topic} className="grid gap-4">
+            <h3 className="text-lg font-semibold tracking-tight">{topic}</h3>
+            <div className="grid gap-5">
+              {publications.map((publication, index) => (
+                <div key={publication.citation} className="flex gap-4 border-l-2 border-primary/40 pl-4">
+                  <span className="font-mono text-xs text-primary pt-1">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{publication.citation} {publication.note && <span className="text-foreground font-medium">({publication.note})</span>}</p>
+                </div>
+              ))}
+            </div>
+          </section>
         ))}
       </div>
       <Accordion type="single" collapsible className="border-t border-border">
@@ -27,9 +41,16 @@ export default function PublicationsSection() {
             <span className="flex items-center gap-2 text-sm font-medium">Additional publications <ChevronRight className="h-4 w-4 text-muted-foreground group-data-[state=open]:hidden" /><ChevronDown className={cn("h-4 w-4 text-muted-foreground hidden group-data-[state=open]:block")} /></span>
           </AccordionTrigger>
           <AccordionContent className="pb-2">
-            <ol className="grid gap-4 list-decimal pl-5 text-sm leading-relaxed text-muted-foreground">
-              {DATA.additionalPublications.map((publication) => <li key={publication} className="pl-2">{publication}</li>)}
-            </ol>
+            <div className="grid gap-6">
+              {Object.entries(groupByTopic(DATA.additionalPublications)).map(([topic, publications]) => (
+                <section key={topic} className="grid gap-3">
+                  <h3 className="text-sm font-semibold text-foreground">{topic}</h3>
+                  <ol className="grid gap-4 list-decimal pl-5 text-sm leading-relaxed text-muted-foreground">
+                    {publications.map((publication) => <li key={publication.citation} className="pl-2">{publication.citation}</li>)}
+                  </ol>
+                </section>
+              ))}
+            </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
