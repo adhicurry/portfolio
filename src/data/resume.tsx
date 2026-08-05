@@ -181,7 +181,7 @@ export const DATA = {
     "Dean's List (8/8 semesters)",
   ],
   hackathons: [
-    { title: 'Liquid AI × DPhi "AI in Space" Hackathon', dates: "2026", location: "Remote", description: "Built SatChat: a vision LLM triage pipeline for satellite imagery. Fine-tuned LFM2.5-VL-450M with LoRA on Sentinel-2 agricultural stress data. 50,000:1 compression ratio over raw imagery downlink.", image: "", links: [] as { href: string; icon: React.ReactNode; title: string }[] },
-    { title: "GT STAR-AI Makerspace Hackathon", dates: "May 12, 2026", location: "Atlanta, GA — Parker H. Petit Institute for Bioengineering", description: "Drug-target affinity prediction with GIN ensembles and uncertainty quantification. KIBA CI=0.882. Full paper, poster, and reproducibility package.", image: "", links: [] as { href: string; icon: React.ReactNode; title: string }[] },
+    { title: 'Liquid AI × DPhi "AI in Space" Hackathon', dates: "2026", location: "Remote", description: "Built SatChat, a vision LLM pipeline that triages satellite imagery. Fine-tuned LFM2.5-VL-450M with LoRA on Sentinel-2 agricultural stress data. It achieves a 50,000:1 compression ratio over raw imagery downlink.", image: "", links: [] as { href: string; icon: React.ReactNode; title: string }[] },
+    { title: "GT STAR-AI Makerspace Hackathon", dates: "May 12, 2026", location: "Atlanta, GA — Parker H. Petit Institute for Bioengineering", description: "Built a drug-target affinity prediction system with GIN ensembles and uncertainty quantification. KIBA CI=0.882. The package includes the full paper, poster, and reproducibility materials.", image: "", links: [] as { href: string; icon: React.ReactNode; title: string }[] },
   ],
 };
