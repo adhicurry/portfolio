@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar";
+import SidebarNav from "@/components/sidebar-nav";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -90,10 +90,12 @@ export default function RootLayout({
                 }}
               />
             </div>
-            <div className="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6">
+            <div className="relative z-10 min-h-dvh px-5 pb-16 pt-24 sm:px-8 sm:pb-24 sm:pt-28 lg:ml-64 lg:px-12 lg:pt-16">
+              <div className="mx-auto w-full max-w-4xl">
               {children}
+              </div>
             </div>
-            <Navbar />
+            <SidebarNav />
           </TooltipProvider>
         </ThemeProvider>
       </body>
