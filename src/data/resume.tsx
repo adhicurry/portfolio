@@ -136,6 +136,19 @@ export const DATA = {
       technologies: ["Python", "adb", "Tailscale", "Web Audio API", "WebSockets", "launchd", "Android"],
       links: [], image: "", video: "",
     },
+    {
+      title: "AI Website Builder — Local Business Demo Pipeline",
+      slug: "ai-website-builder-local-business-demo-pipeline",
+      href: "#",
+      dates: "2026 — ongoing (inferred)",
+      active: true,
+      description:
+        "Starts with understanding a local business—through a conversation and real public information—and ends with a polished live demo site. The pipeline combines vertical research, prospect discovery, and content gathering with an LLM-assisted HTML template editor, giving small businesses a concrete website they can evaluate before outreach. It keeps a person in the loop while turning business context into a working proof of value.",
+      longDescription:
+        "The pipeline starts before any page is built: research a vertical, study strong competitors, and turn the patterns into a reusable industry template. From there, identify local businesses with weak or missing web presence and gather the material that makes a demo credible, including Google Maps listing details, reviews, photos, existing website content, and social posts. This creates a repeatable process rather than a one-off mockup, while keeping the business's real services, contact information, and customer voice at the center.\\n\\nOnce the business is understood, an HTML template is customized with its actual content and refined through an LLM-assisted editor. The result is a self-contained, responsive demo that can be checked for complete sections, accurate phone and CTA details, attributed reviews, and mobile behavior before it is shared. The build is AI-assisted, not a black-box autonomous generator: Maya and Daksh guide the research, content decisions, customization, and quality check.\\n\\nThe working demo then becomes the outreach pitch—a tangible way to show a small business what a stronger web presence could look like before discussing delivery. After a prospect is interested, the same pipeline supports the handoff into implementation, hosting, forms, analytics, and owner training.",
+      technologies: ["HTML/CSS", "LLM-assisted content editing", "Google Maps research", "Google Reviews", "Vercel"],
+      links: [], image: "", video: "",
+    },
   ],
   publications: [
     { citation: 'Adhikari, D.; Quirinale, D.; Radyjowski, P.; Carlson, D.; Thurman, Z.; Yu, D.; Chen, C.; An, K.; & Mills, R. "Automated Rapid Cooling of High Temperature Vacuum Furnaces for High Throughput Neutron Experimentation." Rev. Sci. Instrum., 2026.', note: "Featured Article" },
