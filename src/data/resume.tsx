@@ -77,6 +77,7 @@ export const DATA = {
   academicProjects: [
     {
       title: "Drug-Target Affinity Prediction",
+      slug: "drug-target-affinity-prediction",
       href: "#",
       dates: "2026",
       active: true,
@@ -89,6 +90,7 @@ export const DATA = {
   personalProjects: [
     {
       title: "SatChat — Vision LLM for Satellite Imagery",
+      slug: "satchat-vision-llm-for-satellite-imagery",
       href: "#",
       dates: "2026",
       active: true,
@@ -99,12 +101,39 @@ export const DATA = {
     },
     {
       title: "Recipe Generator — AI-Native iOS App",
+      slug: "recipe-generator-ai-native-ios-app",
       href: "#",
       dates: "2026",
       active: true,
       description:
         "Tell it what's in your pantry. Get a recipe. Smart pantry ranker uses nomic-embed-text embeddings + section dampening + usage frequency to surface the best ingredients first. Local LLM (llama3.2:3b via Ollama over Tailscale) for generation. 3-tier cache (memory → AsyncStorage → Supabase) for instant re-generation. Built a custom dut-recipe-generator Python service (560M BLOOM model, ~8s inference, 100% JSON reliability) as an alternative backend. Includes an AI adaptation loop, dietary preferences, skill level settings, and a community explore page with 44+ seeded recipes.",
       technologies: ["React Native", "Expo", "TypeScript", "Supabase", "Ollama", "Python", "Flask", "Transformers"],
+      links: [], image: "", video: "",
+    },
+    {
+      title: "Guitar: Partscaster Build & Onboard Effects",
+      slug: "guitar-partscaster-build-and-onboard-effects",
+      href: "#",
+      dates: "2026 — ongoing (inferred)",
+      active: true,
+      description:
+        "Assembled a partscaster from individual components, then modified it with onboard fuzz and treble-booster circuits selected by a toggle. Putting the effects before the wireless system solves the impedance problem that makes traditional low-impedance fuzz especially unhappy after a wireless buffer. Also designed and built amp-switcher wiring boxes as a smaller hardware output.",
+      longDescription:
+        "I assembled this guitar as a partscaster: I sourced the components and put them together, then continued modifying the instrument rather than treating the build as finished. The central electronics project came from a practical constraint: fuzz and treble boosters are the effects I gravitate toward, but traditional versions—particularly fuzz—are low-impedance devices and do not work well when a wireless system or other buffer is placed in front of them.\n\nThe solution was to build both effects directly into the guitar body and add a selector toggle. The pickup signal can now go into fuzz, the treble booster, or bypass before it reaches the wireless system, preserving the effect ordering that the rig requires without adding a cable run. Making that work required learning guitar-effects wiring and electronics, assembling and testing the circuits, and reworking the guitar wiring around the new controls.\n\nAs a secondary output, I have also designed and built amp-switcher wiring boxes. The documented design uses a break-before-make 4PDT switch to route the hot and ground paths of two amps between a cabinet and Captor X, swapping both assignments together while keeping every amp connected to a load.",
+      technologies: ["Guitar electronics", "Effects wiring", "Fuzz", "Treble booster", "Wireless signal chains", "4PDT switching"],
+      links: [], image: "/guitar-build.jpg", video: "",
+    },
+    {
+      title: "Pixel Sentinel — Repurposed Android Security Camera",
+      slug: "pixel-sentinel-repurposed-android-security-camera",
+      href: "#",
+      dates: "2026 (inferred)",
+      active: true,
+      description:
+        "Repurposed an old Google Pixel 3a XL into a guard camera node, then built the infrastructure that makes its IP Webcam stream usable from a public HTTPS endpoint. A Python auth proxy handles HTTP/1.0 framing, WebSocket audio tunneling, and server-side Basic Auth, while a custom Web Audio UI replaces the stock interface for low-latency listening and push-to-talk.",
+      longDescription:
+        "Pixel Sentinel turns an old Google Pixel 3a XL into a guard/sentinel camera node. The phone runs the IP Webcam Android app locally; a Python authentication proxy runs as a launchd service on the Mac and sits behind Tailscale Serve. It injects Basic Auth server-side so the end user can open the HTTPS link without facing the app's login screen.\n\nThe difficult part was making the pieces behave like a reliable system rather than simply forwarding a page. Single APK downloads crashed because they omitted native libraries or density resources, so the app had to be installed as a complete multi-split bundle with adb. The proxy uses HTTP/1.0 close-per-request framing because HTTP/1.1 keep-alive caused browsers to hang, and it detects WebSocket upgrades so the two-way audio endpoint can be relayed as a raw TCP tunnel with authentication injected into the handshake.\n\nThe stock audio controls were also not suitable. Live HTML5 audio buffered roughly ten seconds, so the custom UI fetches raw PCM, parses the WAV header, feeds Int16-to-Float32 chunks into Web Audio with a jitter buffer, and drops backlog when playback falls behind. Push-to-talk uses getUserMedia, a ScriptProcessor, and a custom WebSocket sender because the app's legacy navigator.getUserMedia path is absent on iOS Safari. The system also includes guard/TTS announcement mode and a watchdog that revives the stream when it dies.",
+      technologies: ["Python", "adb", "Tailscale", "Web Audio API", "WebSockets", "launchd", "Android"],
       links: [], image: "", video: "",
     },
   ],

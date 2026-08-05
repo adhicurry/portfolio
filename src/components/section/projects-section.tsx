@@ -43,7 +43,7 @@ export default function ProjectsSection({ id, eyebrow, title, description, proje
                             className="h-full"
                         >
                             <ProjectCard
-                                href={project.href}
+                                slug={project.slug}
                                 key={project.title}
                                 title={project.title}
                                 description={project.description}
