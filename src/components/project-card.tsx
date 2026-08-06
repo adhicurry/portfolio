@@ -40,6 +40,7 @@ interface Props {
     href: string;
   }[];
   className?: string;
+  category?: string;
 }
 
 export function ProjectCard({
@@ -53,6 +54,7 @@ export function ProjectCard({
   video,
   links,
   className,
+  category,
 }: Props) {
   return (
     <div
@@ -84,23 +86,20 @@ export function ProjectCard({
         {links && links.length > 0 && (
           <div className="absolute top-2 right-2 flex flex-wrap gap-2">
             {links.map((link, idx) => (
-              <Link
-                href={link.href}
-                key={idx}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Badge
-                  className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90"
-                  variant="default"
-                >
+              <Link href={link.href} key={idx} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                <Badge className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90" variant="default">
                   {link.icon}
                   {link.type}
                 </Badge>
               </Link>
             ))}
           </div>
+        )}
+        {category && (
+          <span className={cn(
+            "absolute top-2 left-2 rounded-full border px-2 py-1 text-[10px] font-medium uppercase tracking-[0.12em] backdrop-blur-sm",
+            category === "phd" ? "border-primary/50 bg-primary/90 text-primary-foreground" : "border-cyan-300/50 bg-cyan-950/90 text-cyan-100"
+          )}>{category === "phd" ? "PhD Research" : "Other Research"}</span>
         )}
       </div>
       <div className="p-6 flex flex-col gap-3 flex-1">

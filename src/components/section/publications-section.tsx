@@ -14,6 +14,16 @@ function groupByTopic<T extends { topic: string }>(items: readonly T[]) {
   }, {});
 }
 
+function categoryLabel(category: string) {
+  return category === "phd" ? "PhD Research" : "Other Research";
+}
+
+function categoryClasses(category: string) {
+  return category === "phd"
+    ? "border-primary/40 bg-primary/10 text-primary"
+    : "border-cyan-400/40 bg-cyan-400/10 text-cyan-300";
+}
+
 export default function PublicationsSection() {
   return (
     <div className="flex min-h-0 flex-col gap-y-8">
@@ -25,7 +35,7 @@ export default function PublicationsSection() {
       <div className="grid gap-8">
         {Object.entries(groupByTopic(DATA.publications)).map(([topic, publications]) => (
           <section key={topic} className="grid gap-4">
-            <h3 className="text-lg font-semibold tracking-tight">{topic}</h3>
+            <div className="flex flex-wrap items-center gap-2"><h3 className="text-lg font-semibold tracking-tight">{topic}</h3><span className={cn("rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em]", categoryClasses(publications[0].category))}>{categoryLabel(publications[0].category)}</span></div>
             <div className="grid gap-5">
               {publications.map((publication, index) => (
                 <div key={publication.citation} className="flex gap-4 border-l-2 border-primary/40 pl-4">
@@ -54,7 +64,7 @@ export default function PublicationsSection() {
             <div className="grid gap-6">
               {Object.entries(groupByTopic(DATA.additionalPublications)).map(([topic, publications]) => (
                 <section key={topic} className="grid gap-3">
-                  <h3 className="text-sm font-semibold text-foreground">{topic}</h3>
+                  <div className="flex flex-wrap items-center gap-2"><h3 className="text-sm font-semibold text-foreground">{topic}</h3><span className={cn("rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em]", categoryClasses(publications[0].category))}>{categoryLabel(publications[0].category)}</span></div>
                   <ol className="grid gap-4 list-decimal pl-5 text-sm leading-relaxed text-muted-foreground">
                     {publications.map((publication) => <li key={publication.citation} className="pl-2">{publication.citation}</li>)}
                   </ol>
