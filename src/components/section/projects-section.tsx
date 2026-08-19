@@ -19,6 +19,7 @@ type ProjectsSectionProps = {
         video: string;
         links: readonly { icon: React.ReactNode; type: string; href: string }[];
         category?: string;
+        tagLabel?: string;
     }>;
 };
 
@@ -63,6 +64,7 @@ export default function ProjectsSection({ id, eyebrow, title, description, proje
                                 video={project.video}
                                 links={project.links}
                                 category={project.category}
+                                tagLabel={project.tagLabel}
                             />
                         </BlurFade>
                     ))}

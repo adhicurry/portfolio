@@ -31,6 +31,7 @@ interface Props {
   description: string;
   dates: string;
   tags: readonly string[];
+  tagLabel?: string;
   link?: string;
   image?: string;
   video?: string;
@@ -49,6 +50,7 @@ export function ProjectCard({
   description,
   dates,
   tags,
+  tagLabel,
   link,
   image,
   video,
@@ -99,7 +101,7 @@ export function ProjectCard({
           <span className={cn(
             "absolute top-2 left-2 rounded-full border px-2 py-1 text-[10px] font-medium uppercase tracking-[0.12em] backdrop-blur-sm",
             category === "phd" ? "border-primary/50 bg-primary/90 text-primary-foreground" : "border-cyan-300/50 bg-cyan-950/90 text-cyan-100"
-          )}>{category === "phd" ? "PhD Research" : "Other Research"}</span>
+          )}>{category === "phd" ? "PhD Research" : (tagLabel ?? "Other Research")}</span>
         )}
       </div>
       <div className="p-6 flex flex-col gap-3 flex-1">
