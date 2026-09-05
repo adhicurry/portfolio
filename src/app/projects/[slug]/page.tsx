@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { GtGuitarViewer } from "@/components/gt-guitar-viewer";
 
 export function generateStaticParams() {
   return allProjects.map(project => ({ slug: project.slug }));
@@ -39,6 +40,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{project.description}</p>
       </header>
       {project.image && <div className="rounded-xl border border-border bg-white p-2"><img src={project.image} alt={project.title} className="max-h-[32rem] w-full object-contain" /></div>}
+      {project.slug === "guitar-partscaster-build-and-onboard-effects" && <GtGuitarViewer />}
       <article className="prose prose-invert max-w-[72ch] border-t border-border pt-6 text-base leading-8 text-muted-foreground">
         <Markdown remarkPlugins={[remarkGfm]}>{project.longDescription || project.description}</Markdown>
       </article>

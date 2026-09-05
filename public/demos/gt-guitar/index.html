@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0a1727">
+  <title>GT Partscaster · Interactive 3D Viewer</title>
+  <link rel="stylesheet" href="./viewer.css?rev=cfa61e55cd61-site1">
+  <script type="module" src="./vendor/model-viewer.min.js"></script>
+  <script type="module" src="./viewer.js?rev=cfa61e55cd61-site1"></script>
+</head>
+<body>
+<main>
+  <header><div><p class="eyebrow">CAD → INTERACTIVE 3D</p><h1>The GT Partscaster</h1></div><span class="badge">Personal project viewer</span></header>
+  <section class="stage" aria-label="Interactive guitar preview">
+    <model-viewer id="guitar" alt="Daksh’s navy and two-tone gold Strat-style guitar, with a white pickguard, HSS pickups, and rosewood-style fingerboard. Drag to rotate; scroll or pinch to zoom."
+      poster="./assets/poster.webp?rev=cfa61e55cd61" reveal="manual" loading="eager" camera-controls touch-action="pan-y"
+      camera-orbit="0deg 90deg 115%" min-camera-orbit="auto 5deg 15%" max-camera-orbit="auto 175deg 300%"
+      field-of-view="30deg" environment-image="neutral" shadow-intensity="0.25" shadow-softness="1"
+      exposure="1.1" tone-mapping="neutral" interaction-prompt="none" auto-rotate-delay="0" rotation-per-second="18deg">
+      <div class="load-cover" slot="poster"><img src="./assets/poster.webp?rev=cfa61e55cd61" alt="" aria-hidden="true"><button id="load" class="primary" type="button">Explore in 3D</button><span id="load-size">Loads a lightweight preview only when opened</span></div>
+      <div slot="progress-bar" class="progress" aria-hidden="true"><div id="progress-fill"></div></div>
+    </model-viewer>
+    <div class="viewer-caption" aria-hidden="true">NAVY / TWO-TONE GOLD / HSS</div>
+  </section>
+  <div class="toolbar" role="group" aria-label="3D view controls">
+    <button id="front" disabled>Front</button><button id="rear" disabled>Rear</button>
+    <button id="spin" disabled aria-pressed="false">Auto-rotate</button>
+    <span class="divider"></span>
+    <button id="zoom-in" disabled aria-label="Zoom in">＋</button><button id="zoom-out" disabled aria-label="Zoom out">−</button>
+    <button id="reset" disabled>Reset view</button>
+    <button id="fullscreen" disabled>Fullscreen</button>
+  </div>
+  <p id="status" role="status" aria-live="polite">Ready when you are. No 3D download until you press Explore.</p>
+  <div class="details"><p><strong>Drag to orbit.</strong> Scroll or pinch to zoom. Shift-drag or use two fingers to pan. Auto-rotate gives you a turntable-style animation.</p><p class="fine">Visual CAD reconstruction; photo-estimated finishes and inherited dimensions. Simplified for the web—not a manufacturing file. Interactive viewer for Daksh's guitar project.</p></div>
+  <noscript><p>JavaScript is needed for the interactive view. The static guitar image remains available above.</p></noscript>
+</main>
+</body>
+</html>
