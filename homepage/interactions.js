@@ -13,10 +13,8 @@
   document.addEventListener('click', e => { const a=e.target.closest('a[href^="#"]'); if(a && a.hash===location.hash) openHash(); });
   openHash();
 
-  // Hosted pages use their own deployed assets; standalone/private previews use the public site.
-  const hosted=/^(portfolio\.|www\.)?dakshhomelab\.com$/.test(location.hostname) || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-  const preview=/\.ts\.net$/.test(location.hostname);
-  const base=hosted && !preview ? location.origin : 'https://portfolio.dakshhomelab.com';
+  // HTTP(S) hosts, including Tailscale, serve their own assets. File previews require the tailnet.
+  const base=/^https?:$/.test(location.protocol) ? location.origin : 'https://swarm.tail3d46e3.ts.net:8132';
   const models={
     'gt-partscaster': {name:'GT partscaster',src:'/demos/gt-guitar/assets/guitar-web.glb',revision:'cfa61e55cd617fde1d99d54f15b11f005fe99a72fe60ddc5bdcb759a98cc2a2b',poster:'gt'},
     'les-paul': {name:'Les Paul',src:'/demos/agent-cad/assets/les-paul-web.glb',revision:'d22e017e6267d020a2017ac535ede5e4ee9a16559d8b3ae775ffa9554bbd6198',poster:'lp'},

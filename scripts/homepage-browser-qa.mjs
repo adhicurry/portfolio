@@ -86,6 +86,7 @@ try{
  await ev(`(()=>{const s=document.getElementById('cad-model');s.value=${JSON.stringify(modelOptions[2])};s.dispatchEvent(new Event('change',{bubbles:true}));return true})()`);
  await until('document.querySelector("model-viewer")?.loaded && document.querySelector("model-viewer").src.includes("building-web")');await delay(1200);
  check('third-cad-renders',await ev('document.querySelector("model-viewer").getDimensions().y>0'));
+ if (/^https?:/.test(url)) check('cad-assets-same-origin',requests.filter(r=>/^https?:/.test(r)&&new URL(r).pathname.startsWith('/demos/')).every(r=>new URL(r).origin===new URL(url).origin));
  await ev('document.querySelector("model-viewer").scrollIntoView({block:"center"});true');await delay(450);
  const v="document.querySelector('model-viewer')";
  const box=await ev(`(()=>{const b=${v}.getBoundingClientRect();return{x:b.x+b.width/2,y:b.y+b.height/2}})()`);
