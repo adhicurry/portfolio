@@ -1,0 +1,32 @@
+{
+  "project": "MyPantryChef",
+  "label": "local prototype capture — not a backend or production build verification",
+  "captured_at": "2026-09-05T09:51:12-04:00",
+  "source_app": "/Users/nexus/Obsidian/Projects/Ventures/active/mypantrychef/app",
+  "source_app_symlink": false,
+  "isolated_copy": "/tmp/mypantrychef-web-capture",
+  "original_app_modified": false,
+  "website_assets": [
+    {"file": "home.png", "route": "/", "state": "local prototype home after onboarding skip"},
+    {"file": "pantry.png", "route": "/kitchen", "state": "local sample pantry: chicken breast, spinach, rice, garlic, Greek yogurt; staple salt, black pepper, olive oil"},
+    {"file": "settings.png", "route": "/settings", "state": "local prototype settings screen"},
+    {"file": "recipe.png", "route": "/recipe", "state": "explicitly labeled prototype/demo sample recipe: Herby Chicken & Rice Skillet"},
+    {"file": "cook-mode.png", "route": "/cook-mode", "state": "explicitly labeled prototype/demo sample recipe with three local instruction objects"}
+  ],
+  "runtime": {
+    "renderer": "Expo Web static export",
+    "expo_export_command": "npx expo export --platform web",
+    "browser": "headless Google Chrome via Playwright",
+    "viewport_css_px": [430, 932],
+    "device_scale_factor": 2,
+    "asset_dimensions_px": [860, 1864],
+    "local_server": "127.0.0.1:8125",
+    "dependencies_added_only_to_isolated_copy": ["react-dom@19.1.0", "react-native-web", "@expo/metro-runtime", "playwright-core"]
+  },
+  "limitations": [
+    "These are local prototype/demo captures, not proof of Supabase, authentication, AI generation, cloud sync, payments, or production deployment.",
+    "Pantry contents were seeded in browser localStorage only for the screenshot state.",
+    "Recipe and cook-mode data were explicit local sample objects; no backend mutation or account was used.",
+    "No credentials, API keys, or environment values are included in this provenance file."
+  ]
+}

@@ -33,7 +33,7 @@ export default function ResearchPage() {
           <div><h3 className="text-lg font-medium">{work.lab}</h3><p className="mt-2 text-sm leading-7 text-muted-foreground">{work.description}</p></div>
         </article>)}
       </section>
-      <p className="border-t border-border pt-6 text-sm text-muted-foreground">For drug-target prediction and satellite imagery work, see <Link href="/projects#machine-learning" className="text-primary underline underline-offset-4">independent ML projects</Link>.</p>
+      <p className="border-t border-border pt-6 text-sm text-muted-foreground">For drug-target prediction, see <Link href="/projects#machine-learning" className="text-primary underline underline-offset-4">independent ML projects</Link>.</p>
     </main>
   );
 }

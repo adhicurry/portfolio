@@ -27,7 +27,25 @@ assert(dataNode, "DATA declaration must exist");
 const data = literal(dataNode);
 const projects = [...data.academicProjects, ...data.personalProjects];
 const publications = [...data.publications, ...data.additionalPublications];
-assert.equal(projects.length, 11, "Preserve all eleven original projects");
+assert.equal(projects.length, 11, "Six academic/independent projects and five personal projects");
+assert.deepEqual(data.personalProjects.map(p => p.slug), [
+  "recipe-generator-ai-native-ios-app",
+  "agent-cad-local-modeling-workflow",
+  "guitar-partscaster-build-and-onboard-effects",
+  "pixel-sentinel-repurposed-android-security-camera",
+  "ai-website-builder-local-business-demo-pipeline",
+]);
+assert(!/SatChat|Amplifier switcher|4PDT|satellite imagery/i.test(source), "Removed projects must not remain in site copy");
+const pantry = data.personalProjects.find(p => p.slug === "recipe-generator-ai-native-ios-app");
+assert.equal(pantry.title, "MyPantryChef");
+for (const term of ["pantry", "plain English", "photo", "Scale servings", "cook mode", "timers", "AsyncStorage", "prototype"]) {
+  assert((pantry.description + pantry.longDescription).toLowerCase().includes(term.toLowerCase()), `MyPantryChef missing ${term}`);
+}
+const guitar = data.personalProjects.find(p => p.slug === "guitar-partscaster-build-and-onboard-effects");
+assert.equal(guitar.image, "/guitar-build.jpg");
+assert(guitar.longDescription.includes("/guitar-wiring-breadboard.jpg"), "Preserve the breadboard photo with the guitar build");
+const cad = data.personalProjects.find(p => p.slug === "agent-cad-local-modeling-workflow");
+for (const term of ["locally", "build123d", "CadQuery", "Blender", "Les Paul", "limitations"]) assert(cad.longDescription.includes(term));
 assert.equal(publications.length, 11, "Preserve all eleven publication records");
 assert.equal(data.patents.length, 3);
 assert.equal(data.awards.length, 8);

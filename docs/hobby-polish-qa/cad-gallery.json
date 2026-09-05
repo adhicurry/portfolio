@@ -1,0 +1,139 @@
+{
+  "ok": true,
+  "base": "http://127.0.0.1:8131",
+  "browser": "Chrome/151.0.7922.170",
+  "checks": [
+    {
+      "name": "no-model-or-bundle-before-opt-in",
+      "passed": true
+    },
+    {
+      "name": "two-model-options",
+      "passed": true
+    },
+    {
+      "name": "poster-before-opt-in",
+      "passed": true
+    },
+    {
+      "name": "gt-model-loaded",
+      "passed": true
+    },
+    {
+      "name": "gt-desktop-framing",
+      "passed": true
+    },
+    {
+      "name": "pointer-orbit",
+      "passed": true
+    },
+    {
+      "name": "wheel-zoom",
+      "passed": true
+    },
+    {
+      "name": "rear-orbit",
+      "passed": true
+    },
+    {
+      "name": "reset-front",
+      "passed": true
+    },
+    {
+      "name": "rotation-progresses",
+      "passed": true
+    },
+    {
+      "name": "rotation-pauses",
+      "passed": true
+    },
+    {
+      "name": "hidden-tab-stops-rotation",
+      "passed": true
+    },
+    {
+      "name": "les-paul-loads-on-switch",
+      "passed": true
+    },
+    {
+      "name": "selection-resets-rotation",
+      "passed": true
+    },
+    {
+      "name": "les-paul-fit",
+      "passed": true
+    },
+    {
+      "name": "selected-fallback",
+      "passed": true
+    },
+    {
+      "name": "no-overflow-390",
+      "passed": true
+    },
+    {
+      "name": "model-fit-390",
+      "passed": true
+    },
+    {
+      "name": "no-overflow-320",
+      "passed": true
+    },
+    {
+      "name": "model-fit-320",
+      "passed": true
+    },
+    {
+      "name": "local-file-renders",
+      "passed": true
+    },
+    {
+      "name": "invalid-file-rejected",
+      "passed": true
+    },
+    {
+      "name": "failed-model-keeps-poster",
+      "passed": true
+    },
+    {
+      "name": "retry-fetches-model",
+      "passed": true
+    },
+    {
+      "name": "bundle-error-message",
+      "passed": true
+    },
+    {
+      "name": "bundle-retry-recovers",
+      "passed": true
+    },
+    {
+      "name": "no-js-exceptions",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8131/demos/gt-guitar/assets/guitar-web.glb?rev=cfa61e55cd617fde1d99d54f15b11f005fe99a72fe60ddc5bdcb759a98cc2a2b&attempt=0",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8131/demos/agent-cad/assets/les-paul-web.glb?rev=d22e017e6267d020a2017ac535ede5e4ee9a16559d8b3ae775ffa9554bbd6198&attempt=0",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8131/demos/gt-guitar/assets/guitar-web.glb?rev=cfa61e55cd617fde1d99d54f15b11f005fe99a72fe60ddc5bdcb759a98cc2a2b&attempt=1",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8131/demos/gt-guitar/assets/guitar-web.glb?rev=cfa61e55cd617fde1d99d54f15b11f005fe99a72fe60ddc5bdcb759a98cc2a2b&attempt=2",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8131/demos/gt-guitar/assets/guitar-web.glb?rev=cfa61e55cd617fde1d99d54f15b11f005fe99a72fe60ddc5bdcb759a98cc2a2b&attempt=1",
+      "method": "GET"
+    }
+  ],
+  "nativeIOS": "not tested"
+}

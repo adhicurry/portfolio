@@ -1,0 +1,51 @@
+{
+  "base": "http://127.0.0.1:8131",
+  "browser": "Chrome/151.0.7922.170",
+  "checks": {
+    "no_glb_before_opt_in": true,
+    "no_viewer_bundle_before_opt_in": true,
+    "original_photo_retained": true,
+    "desktop_page_no_overflow": true,
+    "model_loaded_in_page": true,
+    "iframe_accessible_title": true,
+    "rear_view": true,
+    "embedded_drag_orbit": true,
+    "embedded_wheel_zoom": true,
+    "rotation_advances": true,
+    "mobile_page_no_overflow": true,
+    "mobile_frame_no_overflow": true,
+    "embedded_controls_visible": true,
+    "touch_targets": true,
+    "complete_mobile_model_fits": true,
+    "embedded_pinch_zoom": true,
+    "no_viewer_errors": true,
+    "no_javascript_errors": true,
+    "keyboard_launch": true,
+    "failed_model_shows_fallback": true,
+    "direct_viewer_fallback": true
+  },
+  "errors": [],
+  "dimensions": {
+    "x": 0.3222755640745163,
+    "y": 0.9869872960242723,
+    "z": 0.06912614173373668
+  },
+  "camera": {
+    "orbit": {
+      "theta": 0,
+      "phi": 1.5707963267948966,
+      "radius": 2.573586420605924,
+      "toString": {}
+    },
+    "fov": 24.561922592339453,
+    "width": 322,
+    "height": 498
+  },
+  "modelRequests": [
+    {
+      "url": "http://127.0.0.1:8131/demos/gt-guitar/assets/guitar-web.glb?rev=cfa61e55cd61",
+      "method": "GET"
+    }
+  ],
+  "ok": true
+}

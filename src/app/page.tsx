@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const selected = ["two-phase-flow-boiling", "high-heat-flux-cooling-extreme-sample-environment", "satchat-vision-llm-for-satellite-imagery", "guitar-partscaster-build-and-onboard-effects"]
+  const selected = ["two-phase-flow-boiling", "high-heat-flux-cooling-extreme-sample-environment", "recipe-generator-ai-native-ios-app", "guitar-partscaster-build-and-onboard-effects"]
     .map(slug => allProjects.find(project => project.slug === slug)!) ;
   return (
     <main className="space-y-14 sm:space-y-16">

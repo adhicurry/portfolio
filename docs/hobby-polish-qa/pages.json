@@ -1,0 +1,204 @@
+{
+  "ok": true,
+  "base": "http://127.0.0.1:8131",
+  "browser": "Chrome/151.0.7922.170",
+  "checks": [
+    {
+      "route": "/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/research",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/publications",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/contact",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/two-phase-flow-boiling",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/high-heat-flux-cooling-extreme-sample-environment",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/combustion",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/ml-for-thermal-sciences",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/ml-for-biomedical-materials-systems",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/miscellaneous",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/recipe-generator-ai-native-ios-app",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/agent-cad-local-modeling-workflow",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/guitar-partscaster-build-and-onboard-effects",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/pixel-sentinel-repurposed-android-security-camera",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/projects/ai-website-builder-local-business-demo-pipeline",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/research/publications/automated-rapid-cooling-neutron-vacuum-furnaces",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/research/publications/mitigation-flow-boiling-instabilities-active-flow-control",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/research/publications/uncertainty-aware-drug-target-affinity-prediction",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/research",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/publications",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/contact",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/two-phase-flow-boiling",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/high-heat-flux-cooling-extreme-sample-environment",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/combustion",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/ml-for-thermal-sciences",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/ml-for-biomedical-materials-systems",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/miscellaneous",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/recipe-generator-ai-native-ios-app",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/agent-cad-local-modeling-workflow",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/guitar-partscaster-build-and-onboard-effects",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/pixel-sentinel-repurposed-android-security-camera",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/projects/ai-website-builder-local-business-demo-pipeline",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/research/publications/automated-rapid-cooling-neutron-vacuum-furnaces",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/research/publications/mitigation-flow-boiling-instabilities-active-flow-control",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/research/publications/uncertainty-aware-drug-target-affinity-prediction",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "removedRoute404": true,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "screenshots": "/tmp/portfolio-production-pages-qa",
+  "nativeIOS": "not tested"
+}

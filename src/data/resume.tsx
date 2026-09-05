@@ -14,7 +14,7 @@ export const DATA = {
   description:
     "I'm a mechanical engineering PhD student at Georgia Tech, studying flow-boiling instabilities and active control.",
   summary:
-    "In the [MiNDS Lab](https://sites.gatech.edu/minds/people/), I combine experiments with machine learning to understand and control two-phase cooling. Before graduate school, I spent two years at [Advanced Cooling Technologies](https://www.1-act.com/), developing cooling hardware, combustion models, and thermal-energy-storage simulations.\n\nOutside my PhD, I work on software and electronics: satellite imagery analysis, drug-target prediction, an iPhone recipe app, and guitar effects.",
+    "In the [MiNDS Lab](https://sites.gatech.edu/minds/people/), I combine experiments with machine learning to understand and control two-phase cooling. Before graduate school, I spent two years at [Advanced Cooling Technologies](https://www.1-act.com/), developing cooling hardware, combustion models, and thermal-energy-storage simulations.\n\nOutside my PhD, I work on software and electronics: drug-target prediction, MyPantryChef, agent-assisted CAD, and guitar effects.",
   avatarUrl: "https://ui-avatars.com/api/?name=Daksh+Adhikari&background=1a1a2e&color=00e5ff&size=256",
   skills: [
     { name: "Python", icon: Python },
@@ -166,30 +166,44 @@ export const DATA = {
   ],
   personalProjects: [
     {
-      title: "SatChat — Vision LLM for Satellite Imagery",
-      slug: "satchat-vision-llm-for-satellite-imagery",
-      href: "",
-      dates: "2026",
-      active: true,
-      description:
-        "I built a web prototype that queries recent cloud-free Sentinel-2 imagery for a selected location, encodes NDRE, NDVI, and NDMI for a vision model, and reports crop stress with a regional validation against Iowa yield data.",
-      longDescription:
-        "## What it does\n\nSatChat is a prototype for inspecting crop conditions from a selected point on a globe. It queries the Sentinel-2 constellation through a STAC API, selects a recent cloud-free scene, and returns a structured ANOMALOUS/NORMAL result with stressor type and severity.\n\n## Method\n\nThe pipeline creates a false-color composite from NDRE, NDVI, and NDMI rather than passing a conventional photograph to the model. LFM2.5-VL was fine-tuned with LoRA, with 1.69% of parameters trainable, on 443 labeled tiles from the Iowa corn belt. The end-to-end response takes about five seconds and compresses the scene to a report of roughly 50,000:1.\n\n## Validation\n\nThe prototype was trained and evaluated on Iowa data, not all crops or regions. Stress assessments were compared with USDA county yield records; stressed fields were associated with lower yields (r = \u22120.505, p < 0.0001). I built the project for the Liquid AI \u00d7 DPhi \"AI in Space\" Hackathon in 2026.\n\nTechnologies include Sentinel-2 STAC, odc-stac, LFM2.5-VL, LoRA, MLX, Next.js, and Tailwind CSS.",
-      technologies: ["Next.js", "Python", "LFM2.5-VL", "LoRA / MLX", "Sentinel-2 STAC", "odc-stac", "Tailwind CSS"],
-      links: [], image: "", video: "",
+      "title": "MyPantryChef",
+      "slug": "recipe-generator-ai-native-ios-app",
+      "href": "",
+      "dates": "",
+      "active": true,
+      "description": "I’m building an iPhone cooking assistant around what’s already in the kitchen: a pantry, AI recipe ideas, plain-English substitutions, and a step-by-step cook mode with timers.",
+      "longDescription": "## From a full pantry to an actual dinner\n\nMyPantryChef starts with a familiar problem: having ingredients, but no idea what to make. I’m building an iPhone app that connects the whole process—from keeping track of the kitchen to adapting a recipe and cooking it.\n\n## Start with what you have\n\nThe pantry organizes ingredients into categories such as produce, proteins, grains, and spices, with a separate list for everyday staples. Add several ingredients at once, or scan a pantry photo and review the suggested items before saving them. Recipe requests take those ingredients into account alongside dietary preferences, exclusions, skill level, and default serving size.\n\nYou can ask for a particular dish, describe what you feel like eating, or use Surprise Me for an idea. The result includes quantities, numbered instructions, prep and cooking times, and markers for ingredients already in the pantry.\n\n## Make a recipe your own\n\n- **Adapt it in plain English.** Ask for a change such as “make it spicier” or “no butter,” or use pantry substitutions to work with what is available.\n- **Bring in a recipe.** Import from a URL or a photo of a written recipe, rather than retyping it.\n- **Adjust and prepare.** Scale servings and check ingredients off as you go.\n- **Keep useful results.** Star a recipe, revisit recently generated meals, copy it as text, or export a branded recipe card to share.\n\n## Cook, one step at a time\n\nCook mode replaces the recipe page with a focused, dark screen. It shows one instruction at a time, tracks progress, and keeps the screen awake. Timed steps have start, pause, and reset controls, so the instructions and timer stay together.\n\n## What I built underneath\n\nThe app uses React Native, Expo, and TypeScript. Pantry contents, preferences, saved recipes, and recent history are stored locally with AsyncStorage. The generation layer combines the request with pantry context and preferences, and supports both a hosted OpenAI path and local-model experiments. Supabase supports the recipe catalog and cache; it is not yet a complete account-sync system.\n\n## Project status\n\nThis is a working prototype still in development, not an App Store release. Account sign-in, cross-device sync, and distribution remain unfinished. The feature descriptions here reflect the implemented app; they are not a claim that every device and backend path has completed release testing.",
+      "technologies": [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Pantry-aware AI",
+        "Supabase",
+        "AsyncStorage"
+      ],
+      "links": [],
+      "image": "/projects/mypantrychef/overview.webp",
+      "video": ""
     },
     {
-      title: "Recipe Generator",
-      slug: "recipe-generator-ai-native-ios-app",
-      href: "",
-      dates: "",
-      active: true,
-      description:
-        "I am building an Expo and TypeScript iPhone app that generates recipes from pantry ingredients, imports recipes from links and images, tracks ingredients, and supports conversational edits and step-by-step cooking mode.",
-      longDescription:
-        "## Product\n\nThis React Native app starts with available ingredients and constraints such as \"quick dinner\" or \"no dairy\", then generates a recipe. It also supports Surprise Me, pantry tracking, recipe browsing, natural-language search, recipe import from TikTok, YouTube, blogs, handwritten cards, and receipt photos, plus conversational edits and step-by-step cook mode.\n\n## Architecture\n\nThe primary generator is llama3.2:3b served by Ollama on a home machine and reached from the phone over Tailscale. A separate Flask backend wraps a 560M-parameter BLOOM model fine-tuned for recipes; reported inference is about 8 seconds with valid JSON.\n\nIngredients are embedded with nomic-embed-text and ranked by semantic relevance, section dampening, and usage frequency. Caching uses AsyncStorage on the device (L1), a shared Supabase table (L2), and model inference (L3). The cache key is a SHA256 hash of a normalized, lowercased, deduplicated, sorted ingredient list, excluding universal staples such as salt and oil. A background job pre-warms L2 with popular combinations from the Spoonacular API; the target hit rate is above 85%. At 1,000 daily users, the estimated inference cost is about $5/day without caching and $0.50/day with it.",
-      technologies: ["React Native", "Expo", "TypeScript", "Supabase", "Ollama", "Python", "Flask", "Transformers"],
-      links: [], image: "", video: "",
+      "title": "Agent CAD — From a Description to a 3D Model",
+      "slug": "agent-cad-local-modeling-workflow",
+      "href": "",
+      "dates": "",
+      "active": true,
+      "description": "I set up a workflow that lets AI agents build CAD on my computer. I describe a part or assembly; the agent writes the modeling code, checks the geometry, renders it for review, and revises it. Explore the guitar models below.",
+      "longDescription": "## CAD without handing over the mouse\n\nI wanted to describe a part, give an agent dimensions or references, and have it build an editable model on my own computer. Instead of trying to click through a CAD application, the agent writes a small Python program that creates the shapes. The geometry is built locally, rather than sent to a hosted text-to-CAD service.\n\n## How the workflow works\n\n1. **Describe the part.** Start with what it should do, its dimensions, and any reference files or photos. Turn those into an explicit specification rather than letting the agent guess hidden dimensions.\n2. **Build it locally.** The agent writes modeling code using build123d or CadQuery. Parts remain separate in an assembly, so one component can be revised without rebuilding the design by hand.\n3. **Check the result.** The workflow checks dimensions, solid validity, and exported files. Where relevant, it also tests whether a mesh is closed and whether important openings really pass through the part.\n4. **Look at it, then revise.** Blender produces solid renders from several views. I review the shape and appearance alongside the numerical checks, then ask for targeted changes.\n5. **Share a lighter preview.** An optimized, colored 3D model goes into the browser viewer. The original CAD and modeling code stay separate from this visual copy.\n\n## The guitars\n\nThe gallery brings together my GT partscaster and a dual-humbucker Epiphone Les Paul study. They exercise different parts of the workflow: assemblies, hardware placement, reference-informed shapes, materials, artwork, and browser presentation. The partscaster connects back to [my physical guitar build](/projects/guitar-partscaster-build-and-onboard-effects).\n\nThese are reference-assisted models, not claims that every surface was designed from scratch or measured from a factory drawing. A convincing render is also not proof that a model is ready to manufacture: native CAD, STEP interchange, and printable meshes have separate checks, and some guitar exports still have known limitations.\n\n## A growing model shelf\n\nChoose a model in the gallery to rotate and zoom it. New approved models can be added to the same catalog without creating another page. The local GLB preview is a separate convenience: it opens a file in your browser only and does not publish it to the website.",
+      "technologies": [
+        "Python",
+        "build123d",
+        "CadQuery",
+        "Blender",
+        "Geometry validation",
+        "Interactive 3D"
+      ],
+      "links": [],
+      "image": "/demos/gt-guitar/assets/poster.webp",
+      "video": ""
     },
     {
       title: "Guitar: Partscaster Build & Onboard Effects",
@@ -198,10 +212,10 @@ export const DATA = {
       dates: "",
       active: true,
       description:
-        "I assembled a partscaster and built fuzz and treble-booster circuits into its signal path before the wireless transmitter; I also built a 4PDT switch box for routing two tube amps to one cabinet or a safe load.",
+        "I assembled a partscaster from the body, neck, pickups, and hardware I wanted, then built fuzz and treble-booster circuits into the guitar—before the wireless transmitter, where they can interact directly with the pickups.",
       longDescription:
-        "## Guitar build\n\nI selected the body, neck, pickups, and hardware for a partscaster, then added Fuzz Face-style fuzz and treble-booster circuits inside the guitar. Their placement before the wireless transmitter preserves the pickup interaction those low-input-impedance circuits expect. A body switch selects fuzz, boost, or bypass.\n\nThe electronics use 500K pots, a switching TRS output jack whose ring disconnects the battery when no cable is inserted, and a single-point star ground. The layout leaves room for pickup and control changes, including possible coil-split, phase, series/parallel, and tone-bypass switching. Documented pickup candidates include Fender Noiseless, Seymour Duncan, DiMarzio Area, and Fishman Fluence.\n\n## Amplifier switcher\n\nI also built a break-before-make 4PDT switch box. Four poles switch each amplifier's hot and ground so one throw routes Amp 1 to the speaker cabinet and Amp 2 to a Captor X load box, while the other throw swaps them. The design uses four speaker jacks and 16\u201318 AWG wire, with continuity checks required before use. Break-before-make switching can briefly leave an amplifier unloaded. This wiring layout alone is not a safe hot-switching solution for powered tube amps; continuity checks at the switch positions do not verify uninterrupted loading during a transition.\n\n![Breadboarding the onboard fuzz and treble-booster circuit](/guitar-wiring-breadboard.jpg)",
-      technologies: ["Guitar electronics", "Effects wiring", "Fuzz", "Treble booster", "Wireless signal chains", "4PDT switching"],
+        "## Guitar build\n\nI selected the body, neck, pickups, and hardware for a partscaster, then added Fuzz Face-style fuzz and treble-booster circuits inside the guitar. Their placement before the wireless transmitter preserves the pickup interaction those low-input-impedance circuits expect. A body switch selects fuzz, boost, or bypass.\n\nThe electronics use 500K pots, a switching TRS output jack whose ring disconnects the battery when no cable is inserted, and a single-point star ground. The layout leaves room for pickup and control changes, including possible coil-split, phase, series/parallel, and tone-bypass switching. Documented pickup candidates include Fender Noiseless, Seymour Duncan, DiMarzio Area, and Fishman Fluence.\n\n![Breadboarding the onboard fuzz and treble-booster circuit](/guitar-wiring-breadboard.jpg)",
+      technologies: ["Guitar electronics", "Effects wiring", "Fuzz", "Treble booster", "Wireless signal chains"],
       links: [], image: "/guitar-build.jpg", video: "",
     },
     {
