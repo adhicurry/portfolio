@@ -7,10 +7,11 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run homepage:build && next build",
     "start": "next start",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "homepage:build": "node homepage/build.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
