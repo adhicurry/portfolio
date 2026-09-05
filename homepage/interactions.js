@@ -19,7 +19,8 @@
   const base=hosted && !preview ? location.origin : 'https://portfolio.dakshhomelab.com';
   const models={
     'gt-partscaster': {name:'GT partscaster',src:'/demos/gt-guitar/assets/guitar-web.glb',revision:'cfa61e55cd617fde1d99d54f15b11f005fe99a72fe60ddc5bdcb759a98cc2a2b',poster:'gt'},
-    'les-paul': {name:'Les Paul',src:'/demos/agent-cad/assets/les-paul-web.glb',revision:'d22e017e6267d020a2017ac535ede5e4ee9a16559d8b3ae775ffa9554bbd6198',poster:'lp'}
+    'les-paul': {name:'Les Paul',src:'/demos/agent-cad/assets/les-paul-web.glb',revision:'d22e017e6267d020a2017ac535ede5e4ee9a16559d8b3ae775ffa9554bbd6198',poster:'lp'},
+    'boa-atlanta': {name:'Bank of America Plaza · Atlanta',src:'/demos/agent-cad/assets/building-web.glb',revision:'d2ea07f00c04ecbcdd32b617a75a2f821d7c624b5133832e5cabf1b67906aa77',poster:'boa'}
   };
   const select=document.getElementById('cad-model'), load=document.getElementById('cad-load');
   const status=document.getElementById('cad-status'), stage=document.getElementById('cad-viewer');
@@ -63,7 +64,7 @@
       model.setAttribute('camera-controls','');model.setAttribute('touch-action','pan-y');
       model.setAttribute('loading','eager');model.setAttribute('reveal','manual');
       model.setAttribute('environment-image','neutral');model.setAttribute('interaction-prompt','none');
-      model.setAttribute('camera-orbit','0deg 90deg auto');model.setAttribute('field-of-view','30deg');
+      model.setAttribute('camera-orbit','0deg 90deg auto');model.setAttribute('field-of-view',item.src.includes('building-web.glb')?'24deg':'30deg');
       const fail=()=>{if(token!==serial)return;clearTimeout(modelTimer);poster.hidden=false;load.disabled=false;load.textContent='Retry 3D';reset.hidden=true;status.textContent='The model could not load. The picture is still available; try again when online.';};
       model.addEventListener('error',fail);
       model.addEventListener('load',()=>{

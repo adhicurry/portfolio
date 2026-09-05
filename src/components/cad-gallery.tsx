@@ -13,6 +13,7 @@ type ModelViewer = HTMLElement & {
   getCameraOrbit: () => { theta: number; phi: number; radius: number };
   getDimensions: () => { x: number; y: number; z: number };
   getFieldOfView: () => number;
+  maxCameraOrbit: string;
   resetTurntableRotation: () => void;
 };
 
@@ -53,6 +54,7 @@ function fitView(viewer: ModelViewer, theta = 0) {
   if (!box.width || !box.height) return;
   const tangent = Math.tan(viewer.getFieldOfView() * Math.PI / 360);
   const radius = Math.max(size.y / (2 * tangent), size.x / (2 * tangent * box.width / box.height)) * 1.12 + size.z / 2;
+  viewer.maxCameraOrbit = `auto auto ${radius * 4}m`;
   viewer.cameraTarget = "auto auto auto";
   viewer.cameraOrbit = `${theta}deg 90deg ${radius}m`;
 }
@@ -93,7 +95,7 @@ export function CadGallery() {
   const fileRequest = useRef(0);
   const selected = CAD_GALLERY_MODELS.find(model => model.id === selectedId)!;
   const displayName = localFile?.name || selected.shortName;
-  const standalone = `/demos/agent-cad/index.html?model=${selected.id === "les-paul" ? "lp" : "gt"}`;
+  const standalone = `/demos/agent-cad/index.html?model=${selected.id === "les-paul" ? "lp" : selected.id === "boa-atlanta" ? "boa" : "gt"}`;
 
   useEffect(() => () => { if (localFile) URL.revokeObjectURL(localFile.url); }, [localFile]);
 

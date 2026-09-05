@@ -315,7 +315,7 @@
       "dates": "",
       "active": true,
       "description": "A workflow for AI agents to turn descriptions, dimensions, and reference files into editable CAD models on a local computer.",
-      "longDescription": "Parts are modeled in code, so dimensions and individual components can be revised without rebuilding an assembly by hand. Both the geometry and modeling code stay local.\n\nThe gallery contains two reference-assisted guitar studies: a GT partscaster and a dual-humbucker Epiphone Les Paul. The partscaster accompanies [the physical guitar build](/projects/guitar-partscaster-build-and-onboard-effects).",
+      "longDescription": "Parts are modeled in code, so dimensions and individual components can be revised without rebuilding an assembly by hand. Both the geometry and modeling code stay local.\n\nThe gallery contains two reference-assisted guitar studies: a GT partscaster and a dual-humbucker Epiphone Les Paul. It also includes Bank of America Plaza · Atlanta, a 1:1000 exterior study with a documented 311.8 m height; dimensions and details are estimated, and the model is not as-built. The partscaster accompanies [the physical guitar build](/projects/guitar-partscaster-build-and-onboard-effects).",
       "technologies": [
         "Python",
         "build123d",
