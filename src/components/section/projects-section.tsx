@@ -1,76 +1,28 @@
-import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
-import { DATA } from "@/data/resume";
-
-const BLUR_FADE_DELAY = 0.04;
 
 type ProjectsSectionProps = {
-    id: string;
-    eyebrow: string;
-    title: string;
-    description: string;
-    projects: ReadonlyArray<{
-        title: string;
-        slug: string;
-        description: string;
-        dates: string;
-        technologies: readonly string[];
-        image: string;
-        video: string;
-        links: readonly { icon: React.ReactNode; type: string; href: string }[];
-        category?: string;
-        tagLabel?: string;
-    }>;
+  id: string;
+  title: string;
+  description?: string;
+  projects: ReadonlyArray<{
+    title: string; slug: string; description: string; dates: string;
+    technologies: readonly string[]; image: string; video: string;
+    links: readonly { icon: React.ReactNode; type: string; href: string }[];
+    category?: string; tagLabel?: string;
+  }>;
 };
 
-export default function ProjectsSection({ id, eyebrow, title, description, projects }: ProjectsSectionProps) {
-    return (
-        <section id={id}>
-            <div className="flex min-h-0 flex-col gap-y-8">
-                <div className="flex flex-col gap-y-4 items-center justify-center">
-                    <div className="flex items-center w-full">
-                        <div
-                            className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent"
-
-                        />
-                        <div className="border bg-primary z-10 rounded-xl px-4 py-1">
-                            <span className="text-background text-sm font-medium">{eyebrow}</span>
-                        </div>
-                        <div
-                            className="flex-1 h-px bg-linear-to-l from-transparent from-5% via-border via-95% to-transparent"
-
-                        />
-                    </div>
-                    <div className="flex flex-col gap-y-3 items-center justify-center">
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{title}</h2>
-                        <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">{description}</p>
-                    </div>
-                </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto auto-rows-fr">
-                    {projects.map((project, id) => (
-                        <BlurFade
-                            key={project.title}
-                            delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                            className="h-full"
-                        >
-                            <ProjectCard
-                                slug={project.slug}
-                                key={project.title}
-                                title={project.title}
-                                description={project.description}
-                                dates={project.dates}
-                                tags={project.technologies}
-                                image={project.image}
-                                video={project.video}
-                                links={project.links}
-                                category={project.category}
-                                tagLabel={project.tagLabel}
-                            />
-                        </BlurFade>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+export default function ProjectsSection({ id, title, description, projects }: ProjectsSectionProps) {
+  if (!projects.length) return null;
+  return (
+    <section id={id} aria-labelledby={`${id}-heading`} className="space-y-6">
+      <header className="space-y-2 border-t border-border pt-6">
+        <h2 id={`${id}-heading`} className="text-2xl font-semibold">{title}</h2>
+        {description && <p className="max-w-2xl text-sm leading-7 text-muted-foreground">{description}</p>}
+      </header>
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        {projects.map(project => <ProjectCard key={project.slug} {...project} tags={project.technologies} />)}
+      </div>
+    </section>
+  );
 }
-

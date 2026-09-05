@@ -1,79 +1,37 @@
-"use client";
-
 import { DATA } from "@/data/resume";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ChevronDown, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { publicationTitle } from "@/lib/portfolio";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 
-function groupByTopic<T extends { topic: string }>(items: readonly T[]) {
-  return items.reduce<Record<string, T[]>>((groups, item) => {
-    (groups[item.topic] ??= []).push(item);
-    return groups;
-  }, {});
-}
-
-function categoryLabel(category: string) {
-  return category === "phd" ? "PhD Research" : "Other Research";
-}
-
-function categoryClasses(category: string) {
-  return category === "phd"
-    ? "border-primary/40 bg-primary/10 text-primary"
-    : "border-cyan-400/40 bg-cyan-400/10 text-cyan-300";
-}
+type Publication = {
+  citation: string; topic: string; category: string;
+  slug?: string; note?: string; href?: string;
+};
 
 export default function PublicationsSection() {
+  const all: Publication[] = [...DATA.publications, ...DATA.additionalPublications];
+  const submitted = all.filter(p => /submitted/i.test(p.note ?? ""));
+  const published = all.filter(p => !/submitted/i.test(p.note ?? ""));
+  const groups = Array.from(new Set(published.map(p => p.topic))).map(topic => ({topic, publications: published.filter(p => p.topic === topic)}));
+  function entry(publication: Publication) {
+    return <li key={publication.citation} className="space-y-2 border-b border-border pb-5">
+      <h3 className="text-base font-medium leading-7">
+        {publication.slug ? <Link className="hover:text-primary" href={`/research/publications/${publication.slug}`}>{publicationTitle(publication.citation)} <span className="text-primary" aria-hidden="true">↗</span></Link> : publicationTitle(publication.citation)}
+      </h3>
+      <p className="text-sm leading-7 text-muted-foreground">{publication.citation}</p>
+      {publication.note && <p className="text-xs font-medium text-primary">{publication.note}</p>}
+      {publication.href && <a href={publication.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Publisher / DOI ↗</a>}
+    </li>;
+  }
   return (
-    <div className="flex min-h-0 flex-col gap-y-8">
-      <div className="flex flex-col gap-y-3">
-        <div className="flex items-center gap-3 text-primary text-sm font-medium uppercase tracking-[0.2em]"><span className="h-px w-8 bg-primary" /> Selected publications</div>
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Publications</h2>
-        <p className="text-muted-foreground md:text-lg">Peer-reviewed work on thermal systems, biomedical ML, and high-temperature experimentation.</p>
-      </div>
-      <div className="grid gap-8">
-        {Object.entries(groupByTopic(DATA.publications)).map(([topic, publications]) => (
-          <section key={topic} className="grid gap-4">
-            <div className="flex flex-wrap items-center gap-2"><h3 className="text-lg font-semibold tracking-tight">{topic}</h3><span className={cn("rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em]", categoryClasses(publications[0].category))}>{categoryLabel(publications[0].category)}</span></div>
-            <div className="grid gap-5">
-              {publications.map((publication, index) => (
-                <div key={publication.citation} className="flex gap-4 border-l-2 border-primary/40 pl-4">
-                  <span className="font-mono text-xs text-primary pt-1">{String(index + 1).padStart(2, "0")}</span>
-                  <div className="text-sm leading-relaxed text-muted-foreground">
-                    {publication.slug ? (
-                      <Link href={`/research/publications/${publication.slug}`} className="group inline-flex items-start gap-1 hover:text-foreground transition-colors">
-                        <span>{publication.citation}</span>
-                        <ArrowUpRight className="mt-1 size-3.5 shrink-0 text-primary opacity-70 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      </Link>
-                    ) : publication.citation}
-                    {publication.note && <span className="ml-1 text-foreground font-medium">({publication.note})</span>}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
-      <Accordion type="single" collapsible className="border-t border-border">
-        <AccordionItem value="additional-publications" className="border-b-0">
-          <AccordionTrigger className="py-4 hover:no-underline group [&>svg]:hidden">
-            <span className="flex items-center gap-2 text-sm font-medium">Additional publications <ChevronRight className="h-4 w-4 text-muted-foreground group-data-[state=open]:hidden" /><ChevronDown className={cn("h-4 w-4 text-muted-foreground hidden group-data-[state=open]:block")} /></span>
-          </AccordionTrigger>
-          <AccordionContent className="pb-2">
-            <div className="grid gap-6">
-              {Object.entries(groupByTopic(DATA.additionalPublications)).map(([topic, publications]) => (
-                <section key={topic} className="grid gap-3">
-                  <div className="flex flex-wrap items-center gap-2"><h3 className="text-sm font-semibold text-foreground">{topic}</h3><span className={cn("rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em]", categoryClasses(publications[0].category))}>{categoryLabel(publications[0].category)}</span></div>
-                  <ol className="grid gap-4 list-decimal pl-5 text-sm leading-relaxed text-muted-foreground">
-                    {publications.map((publication) => <li key={publication.citation} className="pl-2">{publication.citation}</li>)}
-                  </ol>
-                </section>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+    <div className="space-y-12">
+      {submitted.length > 0 && <section id="submitted" aria-labelledby="submitted-heading" className="space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6">
+        <header className="space-y-2"><h2 id="submitted-heading" className="text-2xl font-semibold">Submitted manuscripts</h2><p className="text-sm text-muted-foreground">Listed separately from published papers and conference contributions.</p></header>
+        <ul className="space-y-6">{submitted.map(entry)}</ul>
+      </section>}
+      {groups.map(({topic, publications}) => <section key={topic} aria-label={topic} className="space-y-5">
+        <h2 className="text-xl font-semibold">{topic}</h2>
+        <ul className="space-y-6">{publications.map(entry)}</ul>
+      </section>)}
     </div>
   );
 }

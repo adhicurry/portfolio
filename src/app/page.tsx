@@ -1,49 +1,59 @@
-import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import WorkSection from "@/components/section/work-section";
-import { ArrowUpRight } from "lucide-react";
+import AwardsSection from "@/components/section/awards-section";
+import { allProjects } from "@/lib/portfolio";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Overview",
+  title: { absolute: `${DATA.name} | Mechanical engineering & machine learning` },
   description: DATA.description,
+  alternates: { canonical: "/" },
 };
 
-const BLUR_FADE_DELAY = 0.04;
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <BlurFade><h2 className="text-xl font-bold">{children}</h2></BlurFade>;
-}
-
 export default function Page() {
+  const selected = ["two-phase-flow-boiling", "high-heat-flux-cooling-extreme-sample-environment", "satchat-vision-llm-for-satellite-imagery", "guitar-partscaster-build-and-onboard-effects"]
+    .map(slug => allProjects.find(project => project.slug === slug)!) ;
   return (
-    <main className="flex min-h-dvh flex-col gap-14">
-      <section aria-labelledby="hero-heading">
-        <div className="w-full space-y-8">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
-            <div className="order-2 flex flex-col gap-2 md:order-1">
-              <BlurFadeText delay={BLUR_FADE_DELAY} className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl" yOffset={8} text={`Hi, I'm ${DATA.name.split(" ")[0]}`} />
-              <h1 id="hero-heading" className="sr-only">{DATA.name}</h1>
-              <BlurFadeText className="max-w-[600px] text-muted-foreground md:text-lg lg:text-xl" delay={BLUR_FADE_DELAY} text={DATA.description} />
-            </div>
-            <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <Avatar className="size-24 rounded-full border shadow-lg ring-4 ring-muted md:size-32"><AvatarImage alt={DATA.name} src={DATA.avatarUrl} /><AvatarFallback>{DATA.initials}</AvatarFallback></Avatar>
-            </BlurFade>
-          </div>
+    <main className="space-y-14 sm:space-y-16">
+      <header className="space-y-6">
+        <p className="text-sm font-medium text-primary">Mechanical engineering · Georgia Tech</p>
+        <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">{DATA.name}</h1>
+        <p className="max-w-2xl text-xl leading-8 text-foreground/90">{DATA.description}</p>
+        <div className="prose prose-invert max-w-2xl text-base leading-8 text-muted-foreground"><Markdown>{DATA.summary}</Markdown></div>
+        <div className="flex flex-wrap gap-3 pt-1">
+          <Link href="/research" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-primary-foreground">Research <ArrowRight className="size-4" aria-hidden="true" /></Link>
+          <Link href="/projects" className="inline-flex min-h-11 items-center rounded-lg border border-border px-5 py-2 text-sm hover:border-primary/50">Projects</Link>
+          <Link href="/contact" className="inline-flex min-h-11 items-center px-3 py-2 text-sm text-muted-foreground hover:text-primary">Contact →</Link>
+        </div>
+      </header>
+      <section aria-labelledby="selected-heading" className="space-y-4">
+        <h2 id="selected-heading" className="text-2xl font-semibold">Selected work</h2>
+        <div className="grid gap-x-8 sm:grid-cols-2">
+          {selected.map(project => <article key={project.slug} className="border-t border-border py-5">
+            <h3 className="mb-2 text-lg font-semibold leading-snug"><Link href={`/projects/${project.slug}`} className="hover:text-primary">{project.title} <span className="text-primary" aria-hidden="true">↗</span></Link></h3>
+            <p className="text-sm leading-7 text-muted-foreground">{project.description}</p>
+          </article>)}
         </div>
       </section>
-
-      <section aria-labelledby="about-heading"><div className="flex min-h-0 flex-col gap-y-4"><SectionHeading><span id="about-heading">About</span></SectionHeading><BlurFade delay={BLUR_FADE_DELAY * 2}><div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert"><Markdown>{DATA.summary}</Markdown></div></BlurFade></div></section>
-
-      <section aria-labelledby="work-heading"><div className="flex min-h-0 flex-col gap-y-6"><SectionHeading><span id="work-heading">Work & Education</span></SectionHeading><BlurFade delay={BLUR_FADE_DELAY * 3}><WorkSection /></BlurFade>
-        <div className="flex flex-col gap-6 pt-3">{DATA.education.map((education, index) => <BlurFade key={education.school} delay={BLUR_FADE_DELAY * 4 + index * 0.05}><Link href={education.href} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-x-3"><div className="flex min-w-0 flex-1 items-center gap-x-3"><div className="size-8 flex-none rounded-full border bg-muted p-1 shadow ring-2 ring-border md:size-10" /><div className="flex min-w-0 flex-1 flex-col gap-0.5"><div className="flex items-center gap-2 font-semibold leading-none">{education.school}<ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" aria-hidden /></div><div className="font-sans text-sm text-muted-foreground">{education.degree}</div></div></div><div className="flex flex-none items-center gap-1 text-right text-xs tabular-nums text-muted-foreground"><span>{education.start} - {education.end}</span></div></Link></BlurFade>)}</div>
-      </div></section>
-
-      <section aria-labelledby="skills-heading"><div className="flex min-h-0 flex-col gap-y-4"><SectionHeading><span id="skills-heading">Skills</span></SectionHeading><div className="flex flex-wrap gap-2">{DATA.skills.map((skill, id) => <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 5 + id * 0.05}><div className="skill-badge flex h-8 w-fit items-center gap-2 rounded-xl border border-border bg-background px-4 ring-1 ring-border/20">{skill.icon && <skill.icon className="size-4 rounded object-contain" />}<span className="font-mono text-sm font-medium text-foreground">{skill.name}</span></div></BlurFade>)}</div></div></section>
+      <section aria-labelledby="experience-heading" className="space-y-6 border-t border-border pt-8">
+        <h2 id="experience-heading" className="text-2xl font-semibold">Experience</h2>
+        <WorkSection />
+      </section>
+      <section aria-labelledby="education-heading" className="space-y-6 border-t border-border pt-8">
+        <h2 id="education-heading" className="text-2xl font-semibold">Education</h2>
+        {DATA.education.map(education => <article key={education.school} className="grid gap-2 sm:grid-cols-[10rem_1fr]">
+          <p className="text-sm tabular-nums text-muted-foreground">{education.start} – {education.end}</p>
+          <div><h3 className="text-lg font-semibold"><a href={education.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary">{education.school}</a></h3><p className="mt-1 text-sm text-muted-foreground">{education.degree}</p></div>
+        </article>)}
+      </section>
+      <AwardsSection />
+      <section aria-labelledby="tools-heading" className="space-y-4 border-t border-border pt-8">
+        <h2 id="tools-heading" className="text-2xl font-semibold">Tools & methods</h2>
+        <ul className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-muted-foreground">{DATA.skills.map(skill => <li key={skill.name}>{skill.name}</li>)}</ul>
+      </section>
     </main>
   );
 }

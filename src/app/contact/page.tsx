@@ -1,22 +1,20 @@
-import BlurFade from "@/components/magicui/blur-fade";
 import ContactSection from "@/components/section/contact-section";
-import { DATA } from "@/data/resume";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Get in touch with ${DATA.name}.`,
+  description: "Email and professional profiles for Daksh Adhikari.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
   return (
-    <main className="flex min-h-dvh flex-col gap-10">
-      <header className="border-l-2 border-primary pl-5">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">Get in touch</p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tighter sm:text-5xl">Contact</h1>
-        <p className="mt-3 max-w-2xl text-muted-foreground">I'm happy to hear from people working on related research or interesting technical projects.</p>
+    <main className="max-w-2xl space-y-10">
+      <header className="space-y-4">
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Contact</h1>
+        <p className="text-lg leading-8 text-muted-foreground">For questions about my research, project discussions, or collaboration, email me directly.</p>
       </header>
-      <BlurFade><ContactSection /></BlurFade>
+      <ContactSection />
     </main>
   );
 }
